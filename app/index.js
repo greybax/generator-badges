@@ -1,6 +1,5 @@
 'use strict';
 
-var objectAssign = require('object-assign');
 var yeoman = require('yeoman-generator');
 var fs = require("fs")
 var R = require('ramda');
