@@ -1,0 +1,39 @@
+{
+  "name": "generator-badges",
+  "version": "0.0.1",
+  "description": "Yeoman generator for adding badges to your README.md",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "istanbul cover _mocha",
+    "precoveralls": "npm run coverage",
+    "coveralls": "coveralls < coverage/lcov.info",
+    "test": "mocha",
+    "tdd": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greybax/generator-badges/.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "badges"
+  ],
+  "author": "Aleksandr Filatov &lt;greybax@gmail.com&gt;",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greybax/generator-badges/issues"
+  },
+  "homepage": "https://github.com/greybax/generator-badges#readme",
+  "devDependencies": {
+    "coveralls": "^2.11.6",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "yeoman-assert": "^2.1.1",
+    "yeoman-test": "^1.0.0"
+  },
+  "dependencies": {
+    "object-assign": "^4.0.1",
+    "ramda": "^0.19.1",
+    "yeoman-generator": "^0.22.5"
+  }
+}
