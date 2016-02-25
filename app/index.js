@@ -9,29 +9,29 @@ var splitAndTrimEach = R.pipe(R.split(' '), R.map(R.trim));
 
 var badgesArr = {
     npm: {
-        "init"  : `[![NPM version][npm-image]][npm-url]`,
-        "url"   : `[npm-url]: https://npmjs.org/package/{project}`,
-        "image" : `[npm-image]: https://img.shields.io/npm/v/{project}.svg?style=flat-square`
+        "init"  : "[![NPM version][npm-image]][npm-url]",
+        "url"   : "[npm-url]: https://npmjs.org/package/{project}",
+        "image" : "[npm-image]: https://img.shields.io/npm/v/{project}.svg?style=flat-square",
     },
     travis: {
-        "init"  : `[![Build Status][travis-image]][travis-url]`,
-        "url"   : `[travis-url]: https://travis-ci.org/{user}/{project}`,
-        "image" : `[travis-image]: https://img.shields.io/travis/{user}/{project}/master.svg?style=flat-square`
+        "init"  : "[![Build Status][travis-image]][travis-url]",
+        "url"   : "[travis-url]: https://travis-ci.org/{user}/{project}",
+        "image" : "[travis-image]: https://img.shields.io/travis/{user}/{project}/master.svg?style=flat-square",
     },
     coveralls: {
-        "init"  : `[![Coveralls Status][coveralls-image]][coveralls-url]`,
-        "url"   : `[coveralls-url]: https://coveralls.io/r/{user}/{project}`,
-        "image" : `[coveralls-image]: https://img.shields.io/coveralls/{user}/{project}/master.svg?style=flat-square`
+        "init"  : "[![Coveralls Status][coveralls-image]][coveralls-url]",
+        "url"   : "[coveralls-url]: https://coveralls.io/r/{user}/{project}",
+        "image" : "[coveralls-image]: https://img.shields.io/coveralls/{user}/{project}/master.svg?style=flat-square",
     },
     dependencies: {
-        "init"  : `[![Dependency Status][depstat-image]][depstat-url]`,
-        "url"   : `[depstat-url]: https://david-dm.org/{user}/{project}`,
-        "image" : `[depstat-image]: https://david-dm.org/{user}/{project}.svg?style=flat-square`
+        "init"  : "[![Dependency Status][depstat-image]][depstat-url]",
+        "url"   : "[depstat-url]: https://david-dm.org/{user}/{project}",
+        "image" : "[depstat-image]: https://david-dm.org/{user}/{project}.svg?style=flat-square",
     },
     devDependencies : {
-        "init"  : `[![DevDependency Status][depstat-dev-image]][depstat-dev-url]`,
-        "url"   : `[depstat-dev-url]: https://david-dm.org/{user}/{project}#info=devDependencies`,
-        "image" : `[depstat-dev-image]: https://david-dm.org/{user}/{project}/dev-status.svg?style=flat-square`
+        "init"  : "[![DevDependency Status][depstat-dev-image]][depstat-dev-url]",
+        "url"   : "[depstat-dev-url]: https://david-dm.org/{user}/{project}#info=devDependencies",
+        "image" : "[depstat-dev-image]: https://david-dm.org/{user}/{project}/dev-status.svg?style=flat-square",
     },
 }
 
