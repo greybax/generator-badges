@@ -7,7 +7,6 @@
 [![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 
 > [Yeoman](http:\\yeoman.io) generator for adding badges to your README.md
-
 > Works great as cli and with other generators too.
 
 ## Install
@@ -36,8 +35,8 @@ Now supports follow badges in options:
 - ```npm``` — NPM version
 - ```travis``` — Travis CI
 - ```coveralls``` — coveralls.io
-- ```dependency``` — dependency status
-- ```devdependency``` — devDependency status
+- ```dependencies``` — dependency status
+- ```devDependencies``` — devDependency status
 
 ## Composability
 
@@ -57,7 +56,7 @@ Just plug in for generates badges into your README.md into your generator.
 this.composeWith('badges', { options: {
     user: "i-am-user",
     project: "my-awesome-project",
-    plugins: ['travis', 'npm']
+    badges: ['travis', 'npm']
   }
 }, {
   local: require.resolve('generator-badges')
