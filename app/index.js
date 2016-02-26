@@ -62,7 +62,7 @@ module.exports = yeoman.Base.extend({
             }
             
             var result = "";
-            cli.badges.forEach((b) => {
+            cli.badges.forEach(function(b) {
                 result += badgesArr[b].init + '\n' 
                 + badgesArr[b].url
                     .replace("\{project\}", this.project)
@@ -72,7 +72,7 @@ module.exports = yeoman.Base.extend({
                     .replace("\{user\}", this.user) + '\n';
             });
 
-            fs.open("README.md", 'w', (err, fd) => {
+            fs.open("README.md", 'w', function(err, fd) {
                 if (err) {
                     throw 'error opening file: ' + err;
                 }
