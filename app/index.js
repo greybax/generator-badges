@@ -1,7 +1,8 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
-var fs = require("fs")
+var mergeAndConcat = require('merge-and-concat');
+var fs = require("fs");
 var R = require('ramda');
 
 // splitAndTrimEach :: String -> [String]
@@ -51,6 +52,7 @@ module.exports = yeoman.Base.extend({
     writing: {
         app: function() {
             var cli = {};
+            var optional =  this.options.config || {};
 
             var badges = this.options.badges;
             if (typeof badges === 'boolean') {
@@ -59,19 +61,22 @@ module.exports = yeoman.Base.extend({
 
             if (badges) {
                 cli.badges = (typeof badges === 'string') ? splitAndTrimEach(badges) : badges;
-            }
+            
+            cli.user = this.user;
+            cli.project = this.project;
+            var common = mergeAndConcat(cli, optional);
             
             var result = "";
-            var that = this;
-            cli.badges.forEach(function(b) {
-                result += badgesArr[b].init + '\n' 
+            common.badges.forEach(function(b) {
+                result += badgesArr[b].init + '\n'
                 + badgesArr[b].url
-                    .replace("\{project\}", that.project)
-                    .replace("\{user\}", that.user) + '\n'
+                    .replace("\{project\}", common.project)
+                    .replace("\{user\}", common.user) + '\n'
                 + badgesArr[b].image
-                    .replace("\{project\}", that.project)
-                    .replace("\{user\}", that.user) + '\n';
+                    .replace("\{project\}", common.project)
+                    .replace("\{user\}", common.user) + '\n';
             });
+            
 
             fs.open("README.md", 'w', function(err, fd) {
                 if (err) {
@@ -87,5 +92,5 @@ module.exports = yeoman.Base.extend({
                 });
             });
         }
-  }
+  }}
 });
