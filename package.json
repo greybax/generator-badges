@@ -1,6 +1,6 @@
 {
   "name": "generator-badges",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Yeoman generator for adding badges to your README.md",
   "main": "index.js",
   "scripts": {

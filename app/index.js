@@ -39,11 +39,11 @@ var badgesArr = {
 module.exports = yeoman.Base.extend({
     constructor: function() {
         yeoman.Base.apply(this, arguments);
-        this.argument('user', { type: String, required: true,
-            desc: 'Username on github: "yo badges greybax"\n',
+        this.option('user', { type: String, required: false, alias: 'u',
+            desc: 'Username on github: "yo badges -u greybax"\n',
         });
-        this.argument('project', { type: String, required: true,
-            desc: 'Project: "yo badges generator-badges"\n',
+        this.option('project', { type: String, required: false, alias: 'p',
+            desc: 'Project: "yo badges -p generator-badges"\n',
         });
         this.option('badges', { type: Array, required: false, alias: 'b',
             desc: 'Badges list: "yo badges -b npm travis coveralls dependencies devDependencies"',
@@ -62,8 +62,8 @@ module.exports = yeoman.Base.extend({
             if (badges) {
                 cli.badges = (typeof badges === 'string') ? splitAndTrimEach(badges) : badges;
             
-            cli.user = this.user;
-            cli.project = this.project;
+            cli.user = this.options.user;
+            cli.project = this.options.project;
             var common = mergeAndConcat(cli, optional);
             
             var result = "";
@@ -76,7 +76,6 @@ module.exports = yeoman.Base.extend({
                     .replace("\{project\}", common.project)
                     .replace("\{user\}", common.user) + '\n';
             });
-            
 
             fs.open("README.md", 'w', function(err, fd) {
                 if (err) {

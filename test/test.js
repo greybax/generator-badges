@@ -7,8 +7,9 @@ var helpers = require('yeoman-test');
 describe('generator-badges:app', function () {
     before(function (done) {
         helpers.run(path.join( __dirname, '../app'))
-        .withArguments(['iamuser', 'generator-badges'])
         .withOptions({
+            user: 'iamuser',
+            project: 'generator-badges',
             badges: ['travis', 'dependencies'],
         })
         .on('end', done);

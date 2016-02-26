@@ -16,7 +16,7 @@
 ## Usage
 
 ```bash
-yo badges i-am-user my-awesome-project -b travis npm
+yo badges -u i-am-user -p my-awesome-project -b travis npm
 ```
 This command creates ```README.md``` (if doesn't exist) or created existing and put there follow rows:
 
@@ -53,17 +53,14 @@ Just plug in for generates badges into your README.md into your generator.
 ### Compose
 
 ```js
-this.composeWith('badges', { options: {
+this.composeWith('badges', { options: { config: {
     user: "i-am-user",
     project: "my-awesome-project",
     badges: ['travis', 'npm']
-  }
-}, {
+}}}, {
   local: require.resolve('generator-badges')
 });
 ```
-
-```user``` and ```project``` are **required** arguments.
 
 ## License
 
