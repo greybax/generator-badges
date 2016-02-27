@@ -2,7 +2,6 @@
 
 var yeoman = require('yeoman-generator');
 var mergeAndConcat = require('merge-and-concat');
-var fs = require("fs");
 var R = require('ramda');
 
 // splitAndTrimEach :: String -> [String]
@@ -77,19 +76,10 @@ module.exports = yeoman.Base.extend({
                     .replace("\{user\}", common.user) + '\n';
             });
 
-            fs.open("README.md", 'w', function(err, fd) {
-                if (err) {
-                    throw 'error opening file: ' + err;
-                }
-                var buffer = new Buffer(result);
-                fs.write(fd, buffer, 0, buffer.length, null, function(err) {
-                    if (err) {
-                        throw 'error writing file: ' + err;
-                    }
-                    
-                    fs.close(fd);
-                });
-            });
+            this.fs.write(
+                this.destinationPath('README.md'),
+                result
+            );
         }
   }}
 });
