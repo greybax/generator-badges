@@ -53,10 +53,12 @@ Just plug in for generates badges into your README.md into your generator.
 ### Compose
 
 ```js
-this.composeWith('badges', { options: { config: {
-    user: "i-am-user",
-    project: "my-awesome-project",
-    badges: ['travis', 'npm']
+this.composeWith('badges', { options:  {
+    'skip-install': this.options['skip-install'],
+    config: {
+        user: "i-am-user",
+        project: "my-awesome-project",
+        badges: ['travis', 'npm']
 }}}, {
   local: require.resolve('generator-badges')
 });

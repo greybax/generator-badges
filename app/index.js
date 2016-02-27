@@ -52,6 +52,7 @@ module.exports = yeoman.Base.extend({
         app: function() {
             var cli = {};
             var optional =  this.options.config || {};
+            var done = this.async();
 
             var badges = this.options.badges;
             if (typeof badges === 'boolean') {
@@ -60,6 +61,7 @@ module.exports = yeoman.Base.extend({
 
             if (badges) {
                 cli.badges = (typeof badges === 'string') ? splitAndTrimEach(badges) : badges;
+            }
             
             cli.user = this.options.user;
             cli.project = this.options.project;
@@ -76,10 +78,19 @@ module.exports = yeoman.Base.extend({
                     .replace("\{user\}", common.user) + '\n';
             });
 
-            this.fs.write(
-                this.destinationPath('README.md'),
-                result
-            );
+            Promise.all()
+                .then(function() {
+                    this.fs.write(
+                        this.destinationPath('README.md'),
+                        result
+                    );
+                    done();
+                }.bind(this));
+        },
+    },
+    install: function() {
+        if (!this.options['skip-install']) {
+            this.npmInstall();
         }
-  }}
+    },
 });
