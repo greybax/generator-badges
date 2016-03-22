@@ -77,15 +77,11 @@ module.exports = yeoman.Base.extend({
                     .replace("\{project\}", common.project)
                     .replace("\{user\}", common.user) + '\n';
             });
-
-            Promise.all()
-                .then(function() {
-                    this.fs.write(
-                        this.destinationPath('README.md'),
-                        result
-                    );
-                    done();
-                }.bind(this));
+            
+            this.fs.write(
+                this.destinationPath('README.md'),
+                result
+            )
         },
     },
     install: function() {
