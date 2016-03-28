@@ -8,15 +8,10 @@ var R = require('ramda');
 var splitAndTrimEach = R.pipe(R.split(' '), R.map(R.trim));
 
 var badgesArr = {
-    npm: {
-        "init"  : "[![NPM version][npm-image]][npm-url]",
-        "url"   : "[npm-url]: https://npmjs.org/package/{project}",
-        "image" : "[npm-image]: https://img.shields.io/npm/v/{project}.svg?style=flat-square",
-    },
-    travis: {
-        "init"  : "[![Build Status][travis-image]][travis-url]",
-        "url"   : "[travis-url]: https://travis-ci.org/{user}/{project}",
-        "image" : "[travis-image]: https://img.shields.io/travis/{user}/{project}/master.svg?style=flat-square",
+    codeship: {
+        "init"  : "[![Codeship Status][codeship-image]][codeship-url]",
+        "url"   : "[codeship-url]: https://codeship.com/projects/{project}/status?branch=master",
+        "image" : "[codeship-image]: https://codeship.com/projects/{project}/status?branch=master",
     },
     coveralls: {
         "init"  : "[![Coveralls Status][coveralls-image]][coveralls-url]",
@@ -28,10 +23,25 @@ var badgesArr = {
         "url"   : "[depstat-url]: https://david-dm.org/{user}/{project}",
         "image" : "[depstat-image]: https://david-dm.org/{user}/{project}.svg?style=flat-square",
     },
-    devDependencies : {
+    devDependencies: {
         "init"  : "[![DevDependency Status][depstat-dev-image]][depstat-dev-url]",
         "url"   : "[depstat-dev-url]: https://david-dm.org/{user}/{project}#info=devDependencies",
         "image" : "[depstat-dev-image]: https://david-dm.org/{user}/{project}/dev-status.svg?style=flat-square",
+    },
+    npm: {
+        "init"  : "[![NPM version][npm-image]][npm-url]",
+        "url"   : "[npm-url]: https://npmjs.org/package/{project}",
+        "image" : "[npm-image]: https://img.shields.io/npm/v/{project}.svg?style=flat-square",
+    },
+    scrunitizer: {
+        "init"  : "[![Scrunitizer Status][scrunitizer-image]][scrunitizer-url]",
+        "url"   : "[scrunitizer-url]: https://scrutinizer-ci.com/g/{user}/{project}/?branch=master",
+        "image" : "[scrunitizer-image]: https://scrutinizer-ci.com/g/{user}/{project}/badges/quality-score.png?b=master",
+    },
+    travis: {
+        "init"  : "[![Build Status][travis-image]][travis-url]",
+        "url"   : "[travis-url]: https://travis-ci.org/{user}/{project}",
+        "image" : "[travis-image]: https://img.shields.io/travis/{user}/{project}/master.svg?style=flat-square",
     },
 }
 
@@ -52,7 +62,6 @@ module.exports = yeoman.Base.extend({
         app: function() {
             var cli = {};
             var optional =  this.options.config || {};
-            var done = this.async();
 
             var badges = this.options.badges;
             if (typeof badges === 'boolean') {

@@ -37,6 +37,8 @@ Now supports follow badges in options:
 - ```coveralls``` — coveralls.io
 - ```dependencies``` — dependency status
 - ```devDependencies``` — devDependency status
+- ```codeship``` — codeship build status
+- ```scrutinizer``` — scrutinizer code quality
 
 ## Composability
 
