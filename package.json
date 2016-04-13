@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "merge-and-concat": "^1.0.0",
-    "ramda": "^0.20.0",
+    "ramda": "^0.21.0",
     "yeoman-generator": "^0.22.5"
   }
 }
