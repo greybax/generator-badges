@@ -1,12 +1,11 @@
-"use strict";
+'use strict';
 
-var yeoman = require("yeoman-generator");
-var yosay = require("yosay");
-var mergeAndConcat = require("merge-and-concat");
-var ifEmpty = require('if-empty');
+var yeoman = require('yeoman-generator');
+var mergeAndConcat = require('merge-and-concat');
+var R = require('ramda');
 
 // splitAndTrimEach :: String -> [String]
-// var splitAndTrimEach = R.pipe(R.split(" "), R.map(R.trim));
+var splitAndTrimEach = R.pipe(R.split(' '), R.map(R.trim));
 
 var badgesArr = {
     codeship: {
@@ -49,115 +48,53 @@ var badgesArr = {
 module.exports = yeoman.Base.extend({
     constructor: function() {
         yeoman.Base.apply(this, arguments);
-        this.argument("noPrompts", { type: String, required: false });
-        this.option("user", { type: String, required: false, alias: "u",
-            desc: "Username on github: yo badges -u greybax \n",
+        this.option('user', { type: String, required: false, alias: 'u',
+            desc: 'Username on github: "yo badges -u greybax"\n',
         });
-        this.option("project", { type: String, required: false, alias: "p",
-            desc: "Project: yo badges -p generator-badges \n",
+        this.option('project', { type: String, required: false, alias: 'p',
+            desc: 'Project: "yo badges -p generator-badges"\n',
         });
-        this.option("badges", { type: Array, required: false, alias: "b",
-            desc: "Badges list: yo badges -b npm travis coveralls dependencies devDependencies",
+        this.option('badges', { type: Array, required: false, alias: 'b',
+            desc: 'Badges list: "yo badges -b npm travis coveralls dependencies devDependencies"',
         });
     },
-    
-    initializing: function initializing() {
-        this.log(yosay("Welcome to the generator badges!"));
-        this.props = {};
-    },  
-    
-    prompting: function prompting() {
-        if (this.noPrompts) {
-            return;
-        }
-        var done = this.async();
+    writing: {
+        app: function() {
+            var cli = {};
+            var optional =  this.options.config || {};
 
-        var prompts = [{
-            name: "project",
-            message: "Project name:",
-            validate: ifEmpty('You need to provide a project name')
-        }, {
-            name: "user",
-            message: "Github profile:",
-            validate: ifEmpty('You need to provide a github username')
-        }, {
-            type: "checkbox",
-            name: "badges",
-            message: "Badges:",
-            choices:[{
-                name: 'codeship',
-                value: 'codeship',
-                checked: false
-            },{
-                name: 'coveralls',
-                value: 'coveralls',
-                checked: false
-            },{
-                name: 'dependencies',
-                value: 'dependencies',
-                checked: false
-            },{
-                name: 'devDependencies',
-                value: 'devDependencies',
-                checked: false
-            },{
-                name: 'npm',
-                value: 'npm',
-                checked: false
-            },{
-                name: 'scrunitizer',
-                value: 'scrunitizer',
-                checked: false
-            },{
-                name: 'travis',
-                value: 'travis',
-                checked: false
-            }]
-        }];
+            var badges = this.options.badges;
+            if (typeof badges === 'boolean') {
+                this.log('Perhaps you forgot double dash: `-badges` instead of `--badges`');
+            }
 
-        this.prompt(prompts, function (inputAnswers) {
-            this.props = assign({}, inputAnswers);
-            done();
-        }.bind(this));
+            if (badges) {
+                cli.badges = (typeof badges === 'string') ? splitAndTrimEach(badges) : badges;
+            }
+            
+            cli.user = this.options.user;
+            cli.project = this.options.project;
+            var common = mergeAndConcat(cli, optional);
+            
+            var result = "";
+            common.badges.forEach(function(b) {
+                result += badgesArr[b].init + '\n'
+                + badgesArr[b].url
+                    .replace("\{project\}", common.project)
+                    .replace("\{user\}", common.user) + '\n'
+                + badgesArr[b].image
+                    .replace("\{project\}", common.project)
+                    .replace("\{user\}", common.user) + '\n';
+            });
+            
+            this.fs.write(
+                this.destinationPath('README.md'),
+                result
+            )
+        },
     },
-    
-    writing: function writing() {
-        var cli = {};
-        var optional =  this.options.config || {};
-        
-        var badges = this.options.badges;
-        if (typeof badges === "boolean") {
-            this.log("Perhaps you forgot double dash: `-badges` instead of `--badges`");
-        }
-
-        if (badges) {
-            // cli.badges = (typeof badges === "string") ? splitAndTrimEach(badges) : badges;
-            // TODO: need to replace on row above;
-            cli.badges = badges;
-        }
-        
-        cli.user = this.options.user;
-        cli.project = this.options.project;
-        var common = mergeAndConcat(cli, optional, this.props);
-        
-        var result = "";
-        common.badges.forEach(function(b) {
-            result += badgesArr[b].init + "\n"
-            + badgesArr[b].url
-                .replace("\{project\}", common.project)
-                .replace("\{user\}", common.user) + "\n"
-            + badgesArr[b].image
-                .replace("\{project\}", common.project)
-                .replace("\{user\}", common.user) + "\n";
-        });
-
-        this.fs.write(
-            this.destinationPath("README.md"),
-            result
-        )
-    },
-    install: function install() {
-        if (!this.options["skip-install"]) {
+    install: function() {
+        if (!this.options['skip-install']) {
             this.npmInstall();
         }
     },
