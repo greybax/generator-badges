@@ -34,7 +34,7 @@
   "dependencies": {
     "if-empty": "^1.0.0",
     "merge-and-concat": "^1.0.2",
-    "ramda": "^0.21.0",
+    "ramda": "^0.22.1",
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.1.1"
   }
