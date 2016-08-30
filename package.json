@@ -2,7 +2,10 @@
   "name": "generator-badges",
   "version": "0.1.0",
   "description": "Yeoman generator for adding badges to your README.md",
-  "main": "index.js",
+  "main": "app/index.js",
+  "files": [
+    "app"
+  ],
   "scripts": {
     "coverage": "istanbul cover _mocha",
     "precoveralls": "npm run coverage",
