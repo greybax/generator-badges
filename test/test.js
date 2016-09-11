@@ -9,12 +9,12 @@ var generator = function() {
 };
 
 it('creates README.md', function (done) {
-    //assert.file('README.md');
+    assert.file('README.md');
     done();
 });
 
 it('contains arguments in README.md', function (done) {
-    //assert.fileContent('README.md', 'iamuser');
-    //assert.fileContent('README.md', 'generator-badges');
+    assert.fileContent('README.md', 'greybax');
+    assert.fileContent('README.md', 'generator-badges');
     done();
 });

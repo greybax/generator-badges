@@ -15,23 +15,27 @@
 
 ## Usage
 
-```bash
-yo badges -u i-am-user -p my-awesome-project -b travis npm
-```
-This command creates ```README.md``` (if doesn't exist) or created existing and put there follow rows:
+    yo badges noPrompts -u i-am-user -p my-awesome-project -b travis,npm
 
-```
-[![Build Status][travis-image]][travis-url]
-[travis-url]: https://travis-ci.org/i-am-user/my-awesome-project
-[travis-image]: https://img.shields.io/travis/i-am-user/my-awesome-project/master.svg?style=flat-square
+This command creates ```README.md``` (if doesn't exist) or created one and put there follow rows on the top:
 
-[![NPM version][npm-image]][npm-url]
-[npm-url]: https://npmjs.org/package/my-awesome-project
-[npm-image]: https://img.shields.io/npm/v/my-awesome-project.svg?style=flat-square
-```
+    [![Build Status][travis-image]][travis-url]
+    [travis-url]: https://travis-ci.org/i-am-user/my-awesome-project
+    [travis-image]: https://img.shields.io/travis/i-am-user/my-awesome-project/master.svg?style=flat-square
+
+    [![NPM version][npm-image]][npm-url]
+    [npm-url]: https://npmjs.org/package/my-awesome-project
+    [npm-image]: https://img.shields.io/npm/v/my-awesome-project.svg?style=flat-square
+
+**OR**
+
+you can use ```prompt``` mode:
+
+    yo badge
 
 Now supports follow badges in options:
 
+- ```appveyor``` — NPM version
 - ```npm``` — NPM version
 - ```travis``` — Travis CI
 - ```coveralls``` — coveralls.io
@@ -39,6 +43,7 @@ Now supports follow badges in options:
 - ```devDependencies``` — devDependency status
 - ```codeship``` — codeship build status
 - ```scrutinizer``` — scrutinizer code quality
+- ```wercker``` — [wercker.com](wercker.com)
 
 ## Composability
 
