@@ -73,7 +73,7 @@ this.composeWith('badges', { options:  {
 
 ## License
 
-MIT © Aleksandr Filatov <greybax@gmail.com>
+MIT © Aleksandr Filatov [alfilatov.com](https://alfilatov.com)
 
 [npm-url]: https://npmjs.org/package/generator-badges
 [npm-image]: https://img.shields.io/npm/v/generator-badges.svg?style=flat-square
