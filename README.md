@@ -31,7 +31,7 @@ This command creates ```README.md``` (if doesn't exist) or created one and put t
 
 you can use ```prompt``` mode:
 
-    yo badge
+    yo badges
 
 Now supports follow badges in options:
 
