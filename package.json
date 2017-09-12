@@ -38,7 +38,7 @@
     "if-empty": "^1.0.0",
     "merge-and-concat": "^1.0.2",
     "ramda": "^0.24.1",
-    "yeoman-generator": "^1.0.0",
+    "yeoman-generator": "^2.0.0",
     "yosay": "^2.0.0"
   }
 }
